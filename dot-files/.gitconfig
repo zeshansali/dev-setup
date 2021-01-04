@@ -36,3 +36,5 @@
 	untracked = cyan
 [credential]
 	helper = osxkeychain
+[core]
+	excludesFile = ~/.gitignore
