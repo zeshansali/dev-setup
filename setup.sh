@@ -3,7 +3,7 @@
 #      in as command line param
 ssh-keygen -t ed25519 -C "email-address"
 eval "$(ssh-agent -s)"
-ssh-add -K ~/.ssh/id_e25519
+ssh-add -K "~/.ssh/id_e25519"
 
 # install command line tools
 # todo: there may be some errors that need to be ironed out here
@@ -16,9 +16,14 @@ xcode-select --install
 brew install git
 brew install postgresql
 brew install tmux
-brew install nvm
 brew install --cask docker
 brew install docker-compose
+
+# node
+brew install nvm
+export NVM_DIR="~/.nvm"
+source "$(brew --prefix nvm)/nvm.sh"
+nvm install node
 
 # install sdks
 curl -s "https://get.sdkman.io" | bash
