@@ -14,6 +14,7 @@ xcode-select --install
 
 # install tech
 brew install git
+brew install git-gui
 brew install postgresql
 brew install tmux
 brew install --cask docker
