@@ -109,3 +109,7 @@ fi
 
 # default to java 8
 java8
+
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/zeshansali/.sdkman"
+[[ -s "/Users/zeshansali/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/zeshansali/.sdkman/bin/sdkman-init.sh"
