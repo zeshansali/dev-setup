@@ -59,45 +59,35 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-
+# custom configs
 unsetopt correct_all
 
-# paths
-# todo: put paths in array map through to auto export/add to $PATH
-export HOMEBREW_PATH="/usr/local/sbin:$HOME/bin"
-export JMETER_PATH="$HOME/bin/apache-jmeter-5.3/bin"
-
-# add paths to $PATH
-export PATH="$PATH:$JMETER_PATH:$HOMEBREW_PATH"
-
-# go setup
+# go
 export GOPATH=$HOME/Go
 
 # sbt
-export SBT_CREDENTIALS="$HOME/.ivy2/.credentials"
+export SBT_CREDENTIALS="~/.ivy2/.credentials"
 export SBT_OPTS="-Dsbt.override.build.repos=true"
 
 # kill and remove all docker containers
-alias dreset='docker kill $(docker ps -q); docker rm $(docker ps -a -q)'
+alias dreset="docker kill $(docker ps -q); docker rm $(docker ps -a -q)"
 
 # kill all ssh-tunnels
-alias ssh-reset='kill $(lsof -i -n -P | grep TCP | GREP ssh | awk "{print $2}" | uniq)'
+alias ssh-reset="kill $(lsof -i -n -P | grep TCP | GREP ssh | awk "{print $2}" | uniq)"
 
 # this is to download dependencies from pypi?
-alias python-install='pip3 install --trusted-host pypi.org --trusted-host files.pythonhosted.org $1'
+alias python-install="pip3 install --trusted-host pypi.org --trusted-host files.pythonhosted.org $1"
 
-# necessaryf or pyenv to work
+# necessary for pyenv to work
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# nvm setup
-export NVM_DIR=$HOME/.nvm
+# nvm
+export NVM_DIR=~/.nvm
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/zeshansali/.sdkman"
-[[ -s "/Users/zeshansali/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/zeshansali/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/$USER/.sdkman"
+[[ -s "/Users/$USER/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/$USER/.sdkman/bin/sdkman-init.sh"
