@@ -21,12 +21,6 @@ brew install tmux
 brew install --cask docker
 brew install docker-compose
 
-# node
-brew install nvm
-export NVM_DIR="~/.nvm"
-source "$(brew --prefix nvm)/nvm.sh"
-nvm install node
-
 # install sdks
 curl -s "https://get.sdkman.io" | bash
 sdk i java 8.0.275.j9-adpt # may be missing 
@@ -40,6 +34,9 @@ git clone git@github.com:zeshansali/dev-setup.git ~/setup
 
 # install oh-my-zsh
 sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# download zsh plugins
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 
 # setup dot file symlinks
 dotFiles=(.zshrc .vimrc .gitconfig .gitignore)
