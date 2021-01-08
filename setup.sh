@@ -13,6 +13,7 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # install tech
+brew install coreutils
 brew install git
 brew install git-gui
 brew install postgresql
