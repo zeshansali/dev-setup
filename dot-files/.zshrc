@@ -4,6 +4,9 @@
 #                               #
 #################################
 
+# Enable zsh profiling
+zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -51,6 +54,10 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# zsh-nvm plugin options
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -58,7 +65,8 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   colored-man-pages colorize copydir copyfile cp
-  fasd git osx tmux tmuxinator vundle z
+  docker docker-compose fasd git npm osx tmux
+  tmuxinator z zsh-nvm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -105,14 +113,6 @@ alias python-install="pip3 install --trusted-host pypi.org --trusted-host files.
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-
-########
-# NODE #
-########
-
-export NVM_DIR=~/.nvm
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 ##################
 # ZSH PERF UTILS #
