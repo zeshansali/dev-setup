@@ -1,4 +1,8 @@
-# zsh
+#################################
+#                               #
+#          ZSH CONFIGS          #
+#                               #
+#################################
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -59,15 +63,30 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# custom configs
+####################################
+#                                  #
+#          CUSTOM COMFIGS          #
+#                                  #
+####################################
+
 unsetopt correct_all
 
-# go
+######
+# GO #
+######
+
 export GOPATH=$HOME/Go
 
-# sbt
+#######
+# SBT #
+#######
+
 export SBT_CREDENTIALS="~/.ivy2/.credentials"
 export SBT_OPTS="-Dsbt.override.build.repos=true"
+
+###########
+# ALIASES #
+###########
 
 # kill and remove all docker containers
 alias dreset="docker kill $(docker ps -q); docker rm $(docker ps -a -q)"
@@ -75,18 +94,39 @@ alias dreset="docker kill $(docker ps -q); docker rm $(docker ps -a -q)"
 # kill all ssh-tunnels
 alias ssh-reset="kill $(lsof -i -n -P | grep TCP | GREP ssh | awk "{print $2}" | uniq)"
 
+##########
+# PYTHON #
+##########
+
 # this is to download dependencies from pypi?
 alias python-install="pip3 install --trusted-host pypi.org --trusted-host files.pythonhosted.org $1"
 
-# necessary for pyenv to work
+# necessary for pyenv to work?
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# nvm
+########
+# NODE #
+########
+
 export NVM_DIR=~/.nvm
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+##################
+# ZSH PERF UTILS #
+##################
+
+# time zsh start-up
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+##########
+# SDKMAN #
+##########
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/$USER/.sdkman"
