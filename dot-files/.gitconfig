@@ -9,6 +9,9 @@
 	co = checkout
 	b = branch
 	r = rebase
+	rc = rebase --continue
+	ra = rebase --abort
+	rs = rebase --skip
 	f = fetch
 	ci = commit
 	st = status -s
