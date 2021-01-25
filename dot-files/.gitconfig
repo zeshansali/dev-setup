@@ -1,6 +1,6 @@
 [user]
 	name = Zeshan S. Ali
-	email = zeshansali@gmail.com
+	email = zeshan.ali@hey.com
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
