@@ -18,6 +18,7 @@
 	p = push
 	pf = push --force-with-lease
 	pu = pull
+	c = !git add . && git stash && git stash drop
 [apply]
 	whitespace = nowarn
 [color]
