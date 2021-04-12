@@ -54,10 +54,6 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# zsh-nvm plugin options
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -66,10 +62,11 @@ export NVM_COMPLETION=true
 plugins=(
   colored-man-pages colorize copydir copyfile cp
   docker docker-compose fasd git npm osx tmux
-  tmuxinator z zsh-nvm
+  tmuxinator z
 )
 
 source $ZSH/oh-my-zsh.sh
+
 
 ####################################
 #                                  #
@@ -79,12 +76,14 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
 
+
 #######
 # SBT #
 #######
 
 export SBT_CREDENTIALS="~/.ivy2/.credentials"
 export SBT_OPTS="-Dsbt.override.build.repos=true"
+
 
 ###########
 # ALIASES #
@@ -95,6 +94,7 @@ alias dreset="docker kill $(docker ps -q); docker rm $(docker ps -a -q)"
 
 # kill all ssh-tunnels
 alias ssh-reset="kill $(lsof -i -n -P | grep TCP | GREP ssh | awk "{print $2}" | uniq)"
+
 
 ##########
 # PYTHON #
@@ -108,6 +108,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+
 ##################
 # ZSH PERF UTILS #
 ##################
@@ -117,6 +118,15 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
+
+
+#######
+# NVM #
+#######
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 
 ##########
 # SDKMAN #
