@@ -1,46 +1,37 @@
-# generate ssh key for new device
-# todo: get private key name from first command or pass
-#      in as command line param
-ssh-keygen -t ed25519 -C "email-address"
-eval "$(ssh-agent -s)"
-ssh-add -K "~/.ssh/id_e25519"
+# NOTE: update permissions before running this script,
+#
+# chmod 744 ~/path/to/script
 
-# install command line tools
-# todo: there may be some errors that need to be ironed out here
-xcode-select --install
-
-# install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# install tech
-brew install coreutils
-brew install git
-brew install git-gui
-brew install postgresql
-brew install tmux
-brew install --cask docker
-brew install docker-compose
-
-# install sdks
-curl -s "https://get.sdkman.io" | bash
-sdk i java 8.0.275.j9-adpt # may be missing 
-sdk i java 11.0.9.j9-adpt
-n # don't set to default
-sdk i scala 2.13.4
-sdk u scala 2.13.4
-
-# clone dev-setup
-git clone git@github.com:zeshansali/dev-setup.git ~/setup
-
-# install oh-my-zsh
-sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# download zsh plugins
-git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-
-# setup dot file symlinks
-dotFiles=(.zshrc .vimrc .gitconfig .gitignore)
-for dotFile in ${dotFiles[@]}; do
-  rm $dotFile
-  ln -s ~/setup/dot-files/$dotFile ~/$dotFile
+while getopts e: flag; do
+  case "${flag}" in
+    e) email=${OPTARG};;
+  esac
 done
+
+# create base ssh config
+gen_ssh_config() {
+  cat >~/.ssh/config <<EOL
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOL
+}
+
+# generate ssh key and add to ssh agent
+gen_ssh_key() {
+  ssh-keygen -t ed25519 -C $email
+  eval "$(ssh-agent -s)"
+  gen_ssh_config
+  ssh-add -K "~/.ssh/id_e25519"
+}
+
+init_dev_env() {
+  git clone git@github.com:zeshansali/dev-setup.git ~/setup
+  chmod 744 ~/setup/init-dev.sh
+  ~/setup/init-dev.sh
+}
+
+gen_ssh_key
+xcode-select --install
+init_dev_env
