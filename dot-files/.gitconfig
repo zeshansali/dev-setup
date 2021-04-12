@@ -7,8 +7,9 @@
 	required = true
 [alias]
 	co = checkout
-	b = branch
+	br = branch
 	r = rebase
+	ri = rebase -i
 	rc = rebase --continue
 	ra = rebase --abort
 	rs = rebase --skip
@@ -42,3 +43,5 @@
 	helper = osxkeychain
 [core]
 	excludesFile = ~/.gitignore
+[merge]
+	conflictstyle = diff3
