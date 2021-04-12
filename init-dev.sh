@@ -11,6 +11,7 @@ brew install tmux
 brew install --cask docker
 brew install docker-compose
 brew install --cask iterm2
+brew install --cask rectangle
 
 # install sdks
 curl -s "https://get.sdkman.io" | bash
