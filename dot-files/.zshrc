@@ -79,12 +79,6 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
 
-######
-# GO #
-######
-
-export GOPATH=$HOME/Go
-
 #######
 # SBT #
 #######
@@ -130,4 +124,5 @@ timezsh() {
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/$USER/.sdkman"
-[[ -s "/Users/$USER/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/$USER/.sdkman/bin/sdkman-init.sh"
+sdkman_init_script="$SDKMAN_DIR/bin/sdkman-init.sh"
+[[ -s $sdkman_init_script ]] && source $sdkman_init_script
