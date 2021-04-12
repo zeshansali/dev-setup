@@ -13,20 +13,22 @@ brew install docker-compose
 brew install --cask iterm2
 brew install --cask rectangle
 
-# install sdks
+# install sdkman and set java/scala sdks
 curl -s "https://get.sdkman.io" | bash
 source "~/.sdkman/bin/sdkman-init.sh"
-sdk i java 8.0.275.j9-adpt
-sdk i java 11.0.9.j9-adpt
-n # don't set to default
-sdk i scala 2.13.4
-sdk u scala 2.13.4
+export JAVA_8_VERSION=$(sdk ls java | grep "8.*.j9-adpt" | awk '{ print $NF }')
+export JAVA_11_VERSION=$(sdk ls java | grep "11.*.j9-adpt" | awk '{ print $NF }')
+sdk i java $JAVA_8_VERSION
+sdk i java $JAVA_11_VERSION
+sdk u $JAVA_8_VERSION
+sdk i scala
+
+# install nvm and set node version
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+nvm install node
 
 # install oh-my-zsh
 sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# download zsh plugins
-git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
 
 # setup dot file symlinks
 dotFiles=(.zshrc .vimrc .gitconfig .gitignore)
