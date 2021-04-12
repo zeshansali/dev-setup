@@ -10,7 +10,7 @@ done
 
 # create base ssh config
 gen_ssh_config() {
-  cat >~/.ssh/config <<EOL
+  cat > ~/.ssh/config <<EOL
 Host *
   AddKeysToAgent yes
   UseKeychain yes
