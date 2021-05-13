@@ -27,11 +27,11 @@ gen_ssh_key() {
 }
 
 init_dev_env() {
-  git clone git@github.com:zeshansali/dev-setup.git ~/setup
-  chmod 744 ~/setup/init-dev.sh
-  ~/setup/init-dev.sh
+  chmod 744 init-dev.sh
+  init-dev.sh
 }
 
+gen_ssh_config
 gen_ssh_key
 xcode-select --install
-init_dev_env
+# init_dev_env
