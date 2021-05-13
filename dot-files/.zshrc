@@ -82,7 +82,6 @@ unsetopt correct_all
 #######
 
 export SBT_CREDENTIALS="~/.ivy2/.credentials"
-export SBT_OPTS="-Dsbt.override.build.repos=true"
 
 
 ###########
@@ -118,7 +117,6 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
-
 
 #######
 # NVM #
